@@ -456,11 +456,21 @@ pub fn queue_material_tilemap_meshes<M: MaterialTilemap>(
                     },
                 );
                 let z = if **y_sort {
-                    transform.translation.z
+                    let z = transform.translation.z
                         + (1.0
                             - (transform.translation.y
-                                / (chunk.map_size.y as f32 * chunk.tile_size.y)))
+                                / (chunk.map_size.y as f32 * chunk.tile_size.y)));
+                    info!(
+                        "y, z: ({}, {}), map/tile y: ({}, {}), final z: {}",
+                        transform.translation.y,
+                        transform.translation.z,
+                        chunk.map_size.y,
+                        chunk.tile_size.y,
+                        z
+                    );
+                    z
                 } else {
+                    info!("NOT using y sort");
                     transform.translation.z
                 };
                 transparent_phase.add(Transparent2d {
