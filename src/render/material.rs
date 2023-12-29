@@ -470,7 +470,6 @@ pub fn queue_material_tilemap_meshes<M: MaterialTilemap>(
                     );
                     z
                 } else {
-                    info!("NOT using y sort");
                     transform.translation.z
                 };
                 transparent_phase.add(Transparent2d {
